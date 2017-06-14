@@ -15,15 +15,17 @@
 
 //use Symfony\Component\Routing\Annotation\Route;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $tasks = [
-        'Go to the store',
-        'Go to the butcher',
-        'Go to Hannah',
-    ];
+    $tasks = DB::table('tasks')->get();
 
+//    dump($tasks);
+
+//    return $tasks;
+
+//    dump(DB::class);
 
     return view(
         'welcome',
@@ -31,8 +33,14 @@ Route::get('/', function () {
     );
 });
 
-Route::get('/about', function () {
-    return view('about');
+Route::get('/tasks/{id}', function ($id) {
+    $task = DB::table('tasks')->find($id);
+
+    return view(
+        'tasks/show',
+        compact('tasks')
+    );
+
 });
 
 
