@@ -11,13 +11,6 @@
 |
 */
 
-//use Symfony\Component\Routing\Route;
-
-//use Symfony\Component\Routing\Annotation\Route;
-
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Route;
-
 Route::get('/tasks', function () {
     $tasks = DB::table('tasks')->latest()->get();
 
